@@ -1,9 +1,9 @@
-class HashTableEntry:
+class HashTableEntry:                               # class Node:
     """
     Linked List hash table key/value pair
     """
-    def __init__(self, key, value):
-        self.key = key
+    def __init__(self, key, value):                 # similar to linked list
+        self.key = key                              # key is added
         self.value = value
         self.next = None
 
@@ -29,8 +29,8 @@ class HashTable:
             self.capacity = capacity
         else:
             self.capacity = self.min_capacity   # make capacity = min capacity
-        self.bucket = [None] * self.capacity    # initialize bucket (8 slots)
-        self.count = 0                          # start count at zero
+        self.bucket = [None] * self.capacity    # initialize each flat array to None
+        self.size = 0                          # start size at zero
 
     def print_it(self):                         # define print_it
         for i in self.bucket:                   # for every element in the bucket
@@ -38,6 +38,7 @@ class HashTable:
 
     def get_num_slots(self):                    # define get num slots
         """
+        [ [], [], [], [], [] ]
         Return the length of the list you're using to hold the hash
         table data. (Not the number of items stored in the hash table,
         but the number of slots in the main list.)
@@ -58,7 +59,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.count / self.capacity       #
+        return self.size / self.capacity       #
 
     def fnv1(self, key):
 
@@ -128,7 +129,7 @@ class HashTable:
         index = self.hash_index(key)
         if self.bucket[index] == None:
             self.bucket[index] = HashTableEntry(key, value)
-            self.count += 1
+            self.size += 1
         else:
             current = self.bucket[index]
             while current.next != None and current.key != key:
@@ -139,7 +140,7 @@ class HashTable:
                 new_entry = HashTableEntry(key, value)
                 new_entry.next = self.bucket[index]
                 self.bucket[index] = new_entry
-                self.count += 1
+                self.size += 1
         if self.get_load_factor() > .7:
             self.resize(self.capacity * 2)
 
@@ -158,12 +159,12 @@ class HashTable:
         if self.bucket[index].key == key:
             if self.bucket[index].next == None:
                 self.bucket[index] = None
-                self.count -= 1
+                self.size -= 1
             else:
                 new_head = self.bucket[index].next
                 self.bucket[index].next = None
                 self.bucket[index] = new_head
-                self.count -= 1
+                self.size -= 1
         else:
             if self.bucket[index] == None:
                 print(f'key {key} not found!')
@@ -176,7 +177,7 @@ class HashTable:
                     current = current.next
                 if current.key == key:
                     previous.next = current.next
-                    self.count -= 1
+                    self.size -= 1
                     return current.value
                 else:
                     return None
