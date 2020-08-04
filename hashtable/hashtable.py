@@ -1,18 +1,18 @@
-class HashTableEntry:                               # class Node:
+class HashTableEntry:                                   # class Node:
     """
     Linked List hash table key/value pair
     """
-    def __init__(self, key, value):                 # similar to linked list
-        self.key = key                              # key is added
-        self.value = value
-        self.next = None
+    def __init__(self, key, value):                     # similar to linked list
+        self.key = key                                  # key
+        self.value = value                              # value
+        self.next = None                                # next is set to None
 
     def __repr__(self):
-        return f'key: {self.key}, value:{self.value}'
+        return f'key: {self.key}, value:{self.value}'   #print format
 
 
-# Hash table can't have fewer than this many slots
-MIN_CAPACITY = 8
+# Hash table can't have fewer than this many buckets
+MIN_CAPACITY = 8                                        # bucket capacity
 
 
 class HashTable:
@@ -23,14 +23,14 @@ class HashTable:
     Implement this.
     """
 
-    def __init__(self, capacity):
+    def __init__(self, capacity):               # constructor defined
         self.min_capacity = MIN_CAPACITY        # capacity bucket
-        if capacity > self.min_capacity:        # check capacity of self
-            self.capacity = capacity
+        if capacity > self.min_capacity:        # check availability
+            self.capacity = capacity            # set self.capacity
         else:
             self.capacity = self.min_capacity   # make capacity = min capacity
         self.bucket = [None] * self.capacity    # initialize each flat array to None
-        self.size = 0                          # start size at zero
+        self.size = 0                           # start size at zero
 
     def print_it(self):                         # define print_it
         for i in self.bucket:                   # for every element in the bucket
@@ -38,7 +38,7 @@ class HashTable:
 
     def get_num_slots(self):                    # define get num slots
         """
-        [ [], [], [], [], [] ]
+        [ [], [], [], [], [] ] ==> buckets (i.e., lists)
         Return the length of the list you're using to hold the hash
         table data. (Not the number of items stored in the hash table,
         but the number of slots in the main list.)
@@ -59,9 +59,9 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.size / self.capacity       #
+        return self.size / self.capacity       # entries / array size
 
-    def fnv1(self, key):
+    def fnv1(self, key):                       # def hash
 
         """
         FNV-1 Hash, 64-bit
@@ -126,10 +126,10 @@ class HashTable:
         """
         # Your code here
 
-        index = self.hash_index(key)
-        if self.bucket[index] == None:
-            self.bucket[index] = HashTableEntry(key, value)
-            self.size += 1
+        index = self.hash_index(key)                            # find the index we're going to
+        if self.bucket[index] == None:                          # if the bucket is empty in that index
+            self.bucket[index] = HashTableEntry(key, value)     # assign the new node with key and value
+            self.size += 1                                      # increment size by 1
         else:
             current = self.bucket[index]
             while current.next != None and current.key != key:
@@ -138,9 +138,9 @@ class HashTable:
                 current.value = value
             else:
                 new_entry = HashTableEntry(key, value)
-                new_entry.next = self.bucket[index]
+                new_entry.next = self.bucket[index]             # 
                 self.bucket[index] = new_entry
-                self.size += 1
+                self.size += 1                                  # increment size by 1 
         if self.get_load_factor() > .7:
             self.resize(self.capacity * 2)
 
