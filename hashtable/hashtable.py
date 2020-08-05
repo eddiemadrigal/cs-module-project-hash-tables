@@ -59,7 +59,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        return self.size / self.capacity       # entries / array size
+        return self.size / self.capacity       # entries per bucket (at 0.7 max, resize capacity)
 
     def fnv1(self, key):                       # def hash
 
@@ -112,7 +112,7 @@ class HashTable:
         Take an arbitrary key and return a valid integer index
         between within the storage capacity of the hash table.
         """
-        return self.fnv1(key) % self.capacity
+        return self.fnv1(key) % self.capacity                   # incorporate fnv1
         # return self.djb2(key) % self.capacity
 
     def put(self, key, value):

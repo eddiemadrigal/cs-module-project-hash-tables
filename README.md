@@ -73,12 +73,18 @@ For these, you can use either the built-in `dict` type, or the hashtable
 you built. (Some of these are easier with `dict` since it's more
 full-featured.)
 
-* [Lookup Table](applications/lookup_table/)
-* [Expensive Sequence](applications/expensive_seq/)
-* [Word Count](applications/word_count/)
+Day 1
+
+* [Lookup Table](applications/lookup_table/) - ok
+* [Expensive Sequence](applications/expensive_seq/) - ok
+* [Word Count](applications/word_count/) - ok
 * [No Duplicates](applications/no_dups/)
+
+Day 2
+
 * [Markov Chains](applications/markov/)
 * [Histogram](applications/histo/)
 * [Cracking Caesar Ciphers](applications/crack_caesar/)
 * [Sum and Difference](applications/sumdiff/)
 
+ 
