@@ -1,5 +1,12 @@
 def no_dups(s):
     # Your code here
+    s = s.split(" ")
+    myList = []
+
+    for i in s:
+        if (s.count(i) > 1 and (i not in myList) or s.count(i) == 1):
+            myList.append(i)
+    return(' '.join(myList))
 
 
 
