@@ -1,11 +1,11 @@
 def no_dups(s):
     # Your code here
-    s = s.split(" ")
+    words = s.split(" ")    # s is assigned an array of words from 
     myList = []
 
-    for i in s:
-        if (s.count(i) > 1 and (i not in myList) or s.count(i) == 1):
-            myList.append(i)
+    for word in words:
+        if (words.count(word) > 1 and (word not in myList) or words.count(word) == 1):
+            myList.append(word)
     return(' '.join(myList))
 
 
