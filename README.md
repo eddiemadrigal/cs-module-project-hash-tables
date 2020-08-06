@@ -78,12 +78,12 @@ Day 1
 * [Lookup Table](applications/lookup_table/) - ok
 * [Expensive Sequence](applications/expensive_seq/) - ok
 * [Word Count](applications/word_count/) - ok
-* [No Duplicates](applications/no_dups/)
+* [No Duplicates](applications/no_dups/) - ok
 
 Day 2
 
-* [Markov Chains](applications/markov/)
-* [Histogram](applications/histo/)
+* [Markov Chains](applications/markov/) - ok
+* [Histogram](applications/histo/) 
 * [Cracking Caesar Ciphers](applications/crack_caesar/)
 * [Sum and Difference](applications/sumdiff/)
 
